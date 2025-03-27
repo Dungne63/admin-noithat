@@ -14,10 +14,23 @@ const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
 const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
 const OrderPage = lazy(() => import("@features/Order/pages/Order"));
 const UserPage = lazy(() => import("@features/User/pages/User"));
+
 const CategoryPage = lazy(() => import("@features/Category/pages/Category"));
+const AddCategoryPage = lazy(
+  () => import("@features/Category/pages/AddCategory")
+);
+const EditCategoryPage = lazy(
+  () => import("@features/Category/pages/EditCategory")
+);
+
+const ProductPage = lazy(() => import("@features/Product/pages/Product"));
+const AddProductPage = lazy(() => import("@features/Product/pages/AddProduct"));
+// const EditProductPage = lazy(
+//   () => import("@features/Product/pages/EditProduct")
+// );
+
 const BlogPage = lazy(() => import("@features/Blog/pages/Blog"));
 const BannerPage = lazy(() => import("@features/Banner/pages/Banner"));
-const ProductPage = lazy(() => import("@features/Product/pages/Product"));
 const LogoutPage = lazy(() => import("@features/Logout"));
 
 export interface RoutesRendererProps {
@@ -82,10 +95,30 @@ function AppRouter() {
               title: "Danh mục sản phẩm",
             },
             {
+              path: ROUTE_PATHS.ADD_CATEGORY,
+              element: <AddCategoryPage />,
+              title: "Thêm danh mục sản phẩm",
+            },
+            {
+              path: ROUTE_PATHS.EDIT_CATEGORY,
+              element: <EditCategoryPage />,
+              title: "Sửa danh mục sản phẩm",
+            },
+            {
               path: ROUTE_PATHS.PRODUCT,
               element: <ProductPage />,
               title: "Sản phẩm",
             },
+            {
+              path: ROUTE_PATHS.ADD_PRODUCT,
+              element: <AddProductPage />,
+              title: "Thêm sản phẩm",
+            },
+            // {
+            //   path: ROUTE_PATHS.EDIT_CATEGORY,
+            //   element: <EditProductPage />,
+            //   title: "Sửa sản phẩm",
+            // },
             {
               path: ROUTE_PATHS.BANNER,
               element: <BannerPage />,

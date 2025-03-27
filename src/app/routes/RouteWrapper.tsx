@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from "react-router";
+import { matchPath, Navigate, Outlet, useLocation } from "react-router";
 import RolePaths from "../../config/permission";
 import { AppSelectors } from "../slice";
 import { useAppSelector } from "@services/store";
@@ -20,7 +20,11 @@ export function RouteWrapper() {
 
   const allowedRoutes = RolePaths[role as string] || [];
 
-  if (!allowedRoutes.includes(location.pathname)) {
+  const isAllowed = allowedRoutes.some(
+    (path) => path === location.pathname || matchPath(path, location.pathname)
+  );
+
+  if (!isAllowed) {
     return <Navigate to={handleDestination()} replace />;
   }
 

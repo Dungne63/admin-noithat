@@ -8,7 +8,7 @@ import { PowerIcon } from "@heroicons/react/24/solid";
 const SideBar: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-[300px] p-4 bg-white border-r-1 max-h-[calc(100vh-24px)] overflow-y-auto flex flex-col">
+    <div className="min-w-[260px] p-4 bg-white border-r-1 max-h-[calc(100vh-24px)] overflow-y-auto flex flex-col">
       <div className="text-primary font-bold text-2xl cursor-pointer flex gap-4 items-center">
         <Image src="/logo.jfif" className="w-[50px]" /> ADMIN
       </div>

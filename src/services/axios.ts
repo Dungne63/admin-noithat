@@ -1,70 +1,72 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { toast } from "react-toastify";
+import axios, { AxiosRequestConfig } from "axios";
 import CONST from "../constants/app.const";
+import { getAccessToken, removeAccessToken } from "@utils/token.util";
+import { useNavigate } from "react-router";
+import { addToast } from "@heroui/react";
 
 const timeout = CONST.REQUEST.TIME_OUT;
 const AxiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
+// Add a request interceptor
+AxiosClient.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
 
-const registerInterceptorsRequest = (clientInstance: AxiosInstance) => {
-  clientInstance.interceptors.request.use(
-    async (config: any) => {
-      return config;
-    },
-    (error: any) => {
-      return Promise.reject(error);
+    const accessToken = getAccessToken();
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
     }
-  );
-};
-registerInterceptorsRequest(AxiosClient);
 
-const registerInterceptorResponse = (clientInstance: AxiosInstance) => {
-  clientInstance.interceptors.response.use(
-    async (response: { data: any }) => {
-      const data = response.data || response;
-      if (data.success) {
-        return response.data || response;
-      } else {
-        if (data?.message && data?.noti) {
-          toast.error(data?.message.toString() || "Truy cập thất bại");
-        }
-        return response.data || response;
-      }
-    },
-    async (error: any) => {
-      const data = error?.response?.data;
-
-      if (data?.message && data?.noti) {
-        toast.error(data?.message);
-      }
-      return Promise.reject(error);
-    }
-  );
-};
-registerInterceptorResponse(AxiosClient);
-
-const setConfigAxiosClient = (
-  accessToken: any,
-  clientAxiosInstance: AxiosInstance
-) => {
-  clientAxiosInstance.defaults.headers.common = {
-    "Content-Type": "application/json",
-    Authorization: "",
-  };
-  clientAxiosInstance.defaults.timeout = timeout;
-  if (accessToken) {
-    clientAxiosInstance.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
   }
-};
+);
 
-export function setConfigAxios(accessToken: any) {
-  setConfigAxiosClient(accessToken, AxiosClient);
-}
+// Add a response interceptor
+AxiosClient.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+
+    if (response?.data.statusCode !== 200 || response?.data?.errors) {
+      addToast({
+        title: response?.data.message,
+        description: response?.data?.errors?.join(", "),
+        color: "danger",
+      });
+    }
+
+    return response.data || response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+
+    if (
+      error.response?.statusCode === 401 ||
+      error.response?.statusCode === 403
+    ) {
+      addToast({
+        title: "Lỗi",
+        description: "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại",
+        color: "danger",
+      });
+      removeAccessToken();
+      window.location.href = "/login";
+    }
+
+    // const data = error?.response?.data;
+    // if (data?.message && data?.noti) {
+    //   toast.error(data?.message);
+    // }
+    return Promise.reject(error);
+  }
+);
 
 const post = (url: string, data?: any, config = {}) => {
   return AxiosClient.post(url, data, config);

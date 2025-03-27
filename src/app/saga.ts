@@ -6,6 +6,7 @@ import {
   removeAccessToken,
   storeAccessToken,
 } from "@utils/token.util";
+import { addToast } from "@heroui/react";
 
 export function* AppSaga() {
   yield takeLatest(AppActions.getUserInfo, getUserInfo);
@@ -19,7 +20,7 @@ export function* getUserInfo({ payload: { onSuccess } }: any) {
   //   yield delay(50);
   //   const rs: { [x: string]: any } = yield SysFetch.get(`/admin/user-info`);
   //   yield put(AppActions.setIsLoading(false));
-  //   if (rs.success) {
+  //   if (rs.statusCode === 200) {
   //     onSuccess?.(rs.data);
   //   }
   // } catch (error) {
@@ -47,8 +48,14 @@ export function* login({ payload: { onSuccess, body } }: any) {
     yield delay(50);
     const rs: { [x: string]: any } = yield SysFetch.post(`/admin/login`, body);
     yield put(AppActions.setIsLoading(false));
+
     if (rs.statusCode === 200) {
       yield storeAccessToken(rs.data.accessToken);
+      addToast({
+        title: "Đăng nhập thành công",
+        description: "Chào mừng bạn đến với hệ thống quản lý",
+        color: "success",
+      });
       yield put(
         AppActions.setUserInfo({
           id: "1",
@@ -57,6 +64,8 @@ export function* login({ payload: { onSuccess, body } }: any) {
         })
       );
       onSuccess?.(rs.data);
+    } else {
+      throw new Error(`Đăng nhập thất bại`);
     }
   } catch (error) {
     yield put(AppActions.setIsLoading(false));
@@ -74,7 +83,12 @@ export function* logout({ payload: { onSuccess } }: any) {
       accessToken,
     });
     yield put(AppActions.setIsLoading(false));
-    if (rs.success) {
+    if (rs.statusCode === 200) {
+      addToast({
+        title: "Đăng xuất thành công",
+        description: "Hẹn gặp lại bạn sau",
+        color: "success",
+      });
       yield removeAccessToken();
       yield put(
         AppActions.setUserInfo({

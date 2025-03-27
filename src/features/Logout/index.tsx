@@ -12,28 +12,27 @@ import {
 
 const LogoutLayout: FC<Props> = ({ onLogout, onClose }) => {
   return (
-    <AuthWrapper>
-      <Modal
-        isDismissable={false}
-        isKeyboardDismissDisabled={true}
-        isOpen={true}
-      >
-        <ModalContent>
-          <>
-            <ModalHeader className="flex flex-col gap-1">Xác nhận</ModalHeader>
-            <ModalBody>Bạn chắc chắn đăng xuất khỏi hệ thống?</ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Đóng
-              </Button>
-              <Button color="primary" onPress={onLogout}>
-                Xác nhận
-              </Button>
-            </ModalFooter>
-          </>
-        </ModalContent>
-      </Modal>
-    </AuthWrapper>
+    <Modal
+      isDismissable={false}
+      isKeyboardDismissDisabled={true}
+      isOpen={true}
+      onClose={onClose}
+    >
+      <ModalContent>
+        <>
+          <ModalHeader className="flex flex-col gap-1">Xác nhận</ModalHeader>
+          <ModalBody>Bạn chắc chắn đăng xuất khỏi hệ thống?</ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={onClose}>
+              Đóng
+            </Button>
+            <Button color="primary" onPress={onLogout}>
+              Xác nhận
+            </Button>
+          </ModalFooter>
+        </>
+      </ModalContent>
+    </Modal>
   );
 };
 
