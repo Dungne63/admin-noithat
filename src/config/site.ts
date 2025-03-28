@@ -47,7 +47,7 @@ export const SITE_MENU = [
     icon: CubeIcon,
   },
   {
-    label: "Khuyến mãi",
+    label: "Voucher",
     path: "/voucher",
     icon: ReceiptPercentIcon,
   },
@@ -56,9 +56,9 @@ export const SITE_MENU = [
     path: "/blog",
     icon: NewspaperIcon,
   },
-  {
-    label: "Banner",
-    path: "/banner",
-    icon: NewspaperIcon,
-  },
+  // {
+  //   label: "Banner",
+  //   path: "/banner",
+  //   icon: NewspaperIcon,
+  // },
 ];

@@ -16,7 +16,7 @@ export const defaultAddProductForm: ProductType = {
   status: statusProduct[0].key,
   warranty: "",
   shippingInfo: "",
-  images: ["image"],
+  images: [],
 };
 
 export const defaultPagination = {

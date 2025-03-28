@@ -28,7 +28,7 @@ const useProductTable = (props: ReceivedProps) => {
   };
 
   const navigateEditProduct = (id: string) => {
-    navigate(`/${ROUTE_PATHS.EDIT_CATEGORY_BASE}/${id}`);
+    navigate(`/${ROUTE_PATHS.EDIT_PRODUCT_BASE}/${id}`);
   };
 
   return { navigate, columns, deleteProduct, navigateEditProduct, ...props };

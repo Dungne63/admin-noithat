@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router";
 import { addCategorySchema } from "../schemas/AddCategorySchemas";
 import { defaultAddCategoryForm } from "@features/Category/services/const";
 import { useEffect } from "react";
+import { ROUTE_PATHS } from "@constants/route.const";
 
 export type ReceivedProps = Record<string, any>;
 
@@ -35,7 +36,7 @@ const useEditCategory = (props: ReceivedProps) => {
         body: data,
         onSuccess: () => {
           reset();
-          navigate("/category");
+          navigate(`/${ROUTE_PATHS.CATEGORY}`);
         },
       })
     );

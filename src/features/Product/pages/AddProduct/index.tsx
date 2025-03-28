@@ -6,7 +6,7 @@ import AppInput from "@components/common/AppInput";
 import AppTextarea from "@components/common/AppTextArea";
 import AppNumberInput from "@components/common/AppNumberInput";
 import AppSelect from "@components/common/AppSelect";
-import AppUploadImage from "@components/AppUploadImage";
+import AppUploadImage from "@components/common/AppUploadImage";
 
 const AddProductLayout: FC<Props> = ({
   control,
@@ -20,7 +20,7 @@ const AddProductLayout: FC<Props> = ({
     <div className="h-full flex flex-col">
       <form onSubmit={handleSubmit(onSubmit)}>
         <AppHeader
-          pageTitle="Thêm sản phẩm"
+          pageTitle="Thêm mới sản phẩm"
           rightMenu={
             <Button color="primary" type="submit">
               Lưu
@@ -146,14 +146,18 @@ const AddProductLayout: FC<Props> = ({
                 </div>
               </div>
             </div>
-            <div className="col-span-1 ">
-              <div className="bg-white rounded-2xl p-4 shadow-md">
+            <div className="col-span-1 relative">
+              <div className="bg-white rounded-2xl p-4 shadow-md sticky top-[82px] flex flex-col gap-4">
                 <div>
-                  <AppUploadImage />
+                  <div className="mb-2">Ảnh</div>
+                  <AppUploadImage control={control} name="images" />
+                  <div className="text-danger text-xs mt-1">
+                    {errors.images?.message}
+                  </div>
                 </div>
                 <div className="col-span-6">
                   <div className="mb-2">Hoạt động</div>
-                  <AppSelect control={control} name="status" size="sm">
+                  <AppSelect control={control} name="status" size="md">
                     {statusProduct.map((item) => (
                       <SelectItem key={item.key}>{item.label}</SelectItem>
                     ))}

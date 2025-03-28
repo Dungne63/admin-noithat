@@ -25,12 +25,17 @@ const AppSelect = <T extends Record<string, any>>({
       control={control}
       name={name}
       render={({ field: { value, onChange } }) => {
+        console.log("value", value);
         const handledValue =
           typeof value === "string" ? new Set([value]) : value;
         return (
           <Select
             selectedKeys={handledValue}
-            onSelectionChange={(e) => onChange(Array.from(e))}
+            onSelectionChange={(e) => {
+              onChange(
+                typeof value === "string" ? Array.from(e)[0] : Array.from(e)
+              );
+            }}
             {...rest}
           >
             {children}

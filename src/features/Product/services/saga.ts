@@ -36,7 +36,6 @@ export function* getProducts({
   payload: { onSuccess, pagination, search },
 }: any) {
   const body = { ...pagination, search };
-  console.log("body", body);
   try {
     yield put(AppActions.setIsLoading(true));
 
@@ -92,7 +91,6 @@ export function* editProduct({ payload: { onSuccess, body, id } }: any) {
         description: "Sản phẩm đã được cập nhật",
         color: "success",
       });
-      yield put(ProductActions.getCategories({}));
       onSuccess?.(rs.data);
     } else {
       throw new Error(rs.message);
@@ -115,7 +113,7 @@ export function* deleteProduct({ payload: { onSuccess, id } }: any) {
         description: "Sản phẩm đã được xoá",
         color: "success",
       });
-      yield put(ProductActions.getCategories({}));
+      yield put(ProductActions.getProducts({}));
       onSuccess?.(rs.data);
     } else {
       throw new Error(rs.message);

@@ -9,7 +9,7 @@ const AppHeaderLayout: FC<Props> = ({
   pageTitle,
 }) => {
   return (
-    <div className="w-full border-b-1">
+    <div className="w-full border-b-1 sticky top-0 z-10">
       <Navbar
         maxWidth="full"
         classNames={{

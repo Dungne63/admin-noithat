@@ -11,7 +11,6 @@ const DashboardPage = lazy(() => import("@features/Dashboard/pages/Dashboard"));
 const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
 const NotFoundPage = lazy(() => import("@features/NotFound"));
 const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
-const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
 const OrderPage = lazy(() => import("@features/Order/pages/Order"));
 const UserPage = lazy(() => import("@features/User/pages/User"));
 
@@ -25,11 +24,20 @@ const EditCategoryPage = lazy(
 
 const ProductPage = lazy(() => import("@features/Product/pages/Product"));
 const AddProductPage = lazy(() => import("@features/Product/pages/AddProduct"));
-// const EditProductPage = lazy(
-//   () => import("@features/Product/pages/EditProduct")
-// );
+const EditProductPage = lazy(
+  () => import("@features/Product/pages/EditProduct")
+);
+
+const VoucherPage = lazy(() => import("@features/Voucher/pages/Voucher"));
+const AddVoucherPage = lazy(() => import("@features/Voucher/pages/AddVoucher"));
+const EditVoucherPage = lazy(
+  () => import("@features/Voucher/pages/EditVoucher")
+);
 
 const BlogPage = lazy(() => import("@features/Blog/pages/Blog"));
+const AddBlogPage = lazy(() => import("@features/Blog/pages/AddBlog"));
+const EditBlogPage = lazy(() => import("@features/Blog/pages/EditBlog"));
+
 const BannerPage = lazy(() => import("@features/Banner/pages/Banner"));
 const LogoutPage = lazy(() => import("@features/Logout"));
 
@@ -114,20 +122,45 @@ function AppRouter() {
               element: <AddProductPage />,
               title: "Thêm sản phẩm",
             },
-            // {
-            //   path: ROUTE_PATHS.EDIT_CATEGORY,
-            //   element: <EditProductPage />,
-            //   title: "Sửa sản phẩm",
-            // },
             {
-              path: ROUTE_PATHS.BANNER,
-              element: <BannerPage />,
-              title: "Banner",
+              path: ROUTE_PATHS.EDIT_PRODUCT,
+              element: <EditProductPage />,
+              title: "Sửa sản phẩm",
+            },
+            {
+              path: ROUTE_PATHS.VOUCHER,
+              element: <VoucherPage />,
+              title: "Voucher",
+            },
+            {
+              path: ROUTE_PATHS.ADD_VOUCHER,
+              element: <AddVoucherPage />,
+              title: "Thêm voucher",
+            },
+            {
+              path: ROUTE_PATHS.EDIT_VOUCHER,
+              element: <EditVoucherPage />,
+              title: "Sửa voucher",
             },
             {
               path: ROUTE_PATHS.BLOG,
               element: <BlogPage />,
-              title: "Bài đăng",
+              title: "Blog",
+            },
+            {
+              path: ROUTE_PATHS.ADD_BLOG,
+              element: <AddBlogPage />,
+              title: "Thêm voucher",
+            },
+            {
+              path: ROUTE_PATHS.EDIT_BLOG,
+              element: <EditBlogPage />,
+              title: "Sửa voucher",
+            },
+            {
+              path: ROUTE_PATHS.BANNER,
+              element: <BannerPage />,
+              title: "Banner",
             },
             {
               path: ROUTE_PATHS.LOGOUT,

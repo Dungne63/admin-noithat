@@ -33,7 +33,7 @@ AxiosClient.interceptors.response.use(
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
 
-    if (response?.data.statusCode !== 200 || response?.data?.errors) {
+    if (response?.data?.errors) {
       addToast({
         title: response?.data.message,
         description: response?.data?.errors?.join(", "),
@@ -47,17 +47,20 @@ AxiosClient.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
 
-    if (
-      error.response?.statusCode === 401 ||
-      error.response?.statusCode === 403
-    ) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
       addToast({
-        title: "Lỗi",
+        title: "Thông báo",
         description: "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại",
         color: "danger",
       });
       removeAccessToken();
       window.location.href = "/login";
+    } else {
+      addToast({
+        title: "Lỗi",
+        description: error?.response?.data?.message || error.message,
+        color: "danger",
+      });
     }
 
     // const data = error?.response?.data;

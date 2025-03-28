@@ -12,6 +12,7 @@ import {
 } from "@heroui/react";
 import { formatVND } from "@utils/fomart.util";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
+import AppImage from "@components/AppImage";
 
 const ProductTableLayout: FC<Props> = ({
   products,
@@ -23,6 +24,14 @@ const ProductTableLayout: FC<Props> = ({
     const cellValue = item[columnKey as keyof any];
 
     switch (columnKey) {
+      case "images":
+        return (
+          <AppImage
+            src={item.images[0]}
+            alt="Product"
+            className="w-[50px] aspect-square object-cover"
+          />
+        );
       case "status":
         return (
           <Chip
@@ -40,6 +49,7 @@ const ProductTableLayout: FC<Props> = ({
             <p>{formatVND(item.price)}</p>
           </div>
         );
+
       case "actions":
         return (
           <div className="relative flex items-center gap-2 justify-center">

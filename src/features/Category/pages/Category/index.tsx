@@ -15,7 +15,7 @@ const CategoryLayout: FC<Props> = ({ navigate, categories, ...props }) => {
             color="primary"
             onPress={() => navigate("/" + ROUTE_PATHS.ADD_CATEGORY)}
           >
-            Thêm sản phẩm
+            Thêm danh mục
           </Button>
         }
       />

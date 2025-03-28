@@ -7,8 +7,13 @@ import { useAppDispatch, useAppSelector } from "@services/store";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import { addProductSchema } from "../schemas/AddProductSchemas";
-import { defaultAddProductForm } from "@features/Product/services/const";
+import {
+  defaultAddProductForm,
+  statusProduct,
+} from "@features/Product/services/const";
 import { useEffect } from "react";
+import { generateSku } from "@utils/generate.util";
+import { ROUTE_PATHS } from "@constants/route.const";
 
 export type ReceivedProps = Record<string, any>;
 
@@ -18,24 +23,26 @@ const useEditProduct = (props: ReceivedProps) => {
     handleSubmit,
     control,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: defaultAddProductForm,
     resolver: yupResolver(addProductSchema),
   });
-  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const products = useAppSelector(ProductSelectors.products);
+  const categories = useAppSelector(ProductSelectors.categories);
+  const { id } = useParams();
 
   const onSubmit = (data: any) => {
     dispatch(
       ProductActions.editProduct({
-        id,
+        id: id,
         body: data,
         onSuccess: () => {
           reset();
-          navigate("/category");
+          navigate(`/${ROUTE_PATHS.PRODUCT}`);
         },
       })
     );
@@ -47,12 +54,16 @@ const useEditProduct = (props: ReceivedProps) => {
       dispatch(
         ProductActions.getDetailProduct({
           id,
-          onSuccess: ({ description, isActive, parentId, name }: any) =>
-            reset({ description, isActive, parentId, name }),
+          onSuccess: (data: any) => reset(data),
         })
       );
     }
-  }, [dispatch, id, reset]);
+  }, [dispatch]);
+
+  const watchName = watch("name");
+  useEffect(() => {
+    setValue("sku", generateSku(watchName || ""));
+  }, [setValue, watchName]);
 
   return {
     ...props,
@@ -62,8 +73,8 @@ const useEditProduct = (props: ReceivedProps) => {
     errors,
     control,
     navigate,
-    products,
-    id,
+    categories,
+    statusProduct,
   };
 };
 

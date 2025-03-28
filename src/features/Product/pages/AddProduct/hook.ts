@@ -13,6 +13,7 @@ import {
 } from "@features/Product/services/const";
 import { useEffect } from "react";
 import { generateSku } from "@utils/generate.util";
+import { ROUTE_PATHS } from "@constants/route.const";
 
 export type ReceivedProps = Record<string, any>;
 
@@ -39,7 +40,7 @@ const useAddProduct = (props: ReceivedProps) => {
         body: data,
         onSuccess: () => {
           reset();
-          navigate("/product");
+          navigate(`/${ROUTE_PATHS.PRODUCT}`);
         },
       })
     );
