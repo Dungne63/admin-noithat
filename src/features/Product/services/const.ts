@@ -21,5 +21,7 @@ export const defaultAddProductForm: ProductType = {
 
 export const defaultPagination = {
   page: 1,
-  limit: 99,
+  limit: 10,
+  totalPages: 1,
+  totalItems: 1,
 };

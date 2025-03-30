@@ -16,21 +16,42 @@ const useProduct = (props: ReceivedProps) => {
   const [pagination, setPagination] = useState(defaultPagination);
   const [search, setSearch] = useState("");
 
+  const getProducts = (pagination?: any, search?: string) => {
+    dispatch(
+      ProductActions.getProducts({
+        pagination,
+        search,
+        onSuccess: (data: any) =>
+          setPagination((prev) => ({
+            ...prev,
+            page: Number(data.page),
+            limit: Number(data.limit),
+            totalItems: Number(data.totalItems),
+            totalPages: Number(data.totalPages),
+          })),
+      })
+    );
+  };
   useEffect(() => {
-    dispatch(ProductActions.getProducts({ pagination }));
-  }, [dispatch, pagination.page]);
+    getProducts(pagination, search);
+  }, [pagination.page]);
 
   const onSearch = useCallback(() => {
-    dispatch(ProductActions.getProducts({ pagination, search }));
-  }, [search, pagination]);
+    getProducts(defaultPagination, search);
+  }, [search, pagination.page]);
+
+  const onChangePagination = (page: number) => {
+    setPagination((prev) => ({ ...prev, page }));
+  };
 
   return {
     products,
     navigate,
-    pagination,
     onSearch,
     setSearch,
     search,
+    onChangePagination,
+    pagination,
     ...props,
   };
 };

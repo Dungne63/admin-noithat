@@ -12,6 +12,8 @@ const ProductLayout: FC<Props> = ({
   onSearch,
   setSearch,
   search,
+  pagination,
+  onChangePagination,
 }) => {
   return (
     <div>
@@ -32,7 +34,11 @@ const ProductLayout: FC<Props> = ({
         valueInput={search}
       />
       <div className="bg-white rounded-2xl p-4 shadow-md m-4">
-        <ProductTable products={products} />
+        <ProductTable
+          products={products}
+          pagination={pagination}
+          onChangePagination={onChangePagination}
+        />
       </div>
     </div>
   );

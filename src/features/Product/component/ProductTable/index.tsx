@@ -2,6 +2,7 @@ import { FC, useCallback, useMemo } from "react";
 import useProductTable, { Props, ReceivedProps } from "./hook";
 import {
   Chip,
+  Pagination,
   Table,
   TableBody,
   TableCell,
@@ -19,6 +20,8 @@ const ProductTableLayout: FC<Props> = ({
   columns,
   deleteProduct,
   navigateEditProduct,
+  pagination,
+  onChangePagination,
 }) => {
   const renderCell = useCallback((item: any, columnKey: React.Key) => {
     const cellValue = item[columnKey as keyof any];
@@ -76,30 +79,21 @@ const ProductTableLayout: FC<Props> = ({
     }
   }, []);
 
-  //   const setPage = (page: number) => {
-  //     dispatch(
-  //       EGiftActions.setPagination({
-  //         ...pagination,
-  //         page,
-  //       })
-  //     );
-  //     dispatch(EGiftActions.getEGifts({ page }));
-  //   };
-
-  //   const renderPagination = useMemo(() => {
-  //     return (
-  //       pagination?.totalPages > 1 && (
-  //         <div className="flex w-full justify-center">
-  //           <Pagination
-  //             showControls
-  //             page={pagination?.page}
-  //             total={pagination?.totalPages}
-  //             onChange={(page) => setPage(page)}
-  //           />
-  //         </div>
-  //       )
-  //     );
-  //   }, [pagination, setPage]);
+  const renderPagination = useMemo(() => {
+    return (
+      pagination?.totalPages > 1 && (
+        <div className="flex w-full justify-center">
+          <Pagination
+            isDisabled={!onChangePagination}
+            showControls={!!onChangePagination}
+            page={pagination?.page}
+            total={pagination?.totalPages}
+            onChange={(page) => onChangePagination?.(page)}
+          />
+        </div>
+      )
+    );
+  }, [pagination, onChangePagination]);
 
   const renderTable = useMemo(() => {
     return (
@@ -109,7 +103,7 @@ const ProductTableLayout: FC<Props> = ({
         }}
         isStriped
         aria-label="category table"
-        // bottomContent={renderPagination}
+        bottomContent={renderPagination}
       >
         <TableHeader columns={columns}>
           {(column) => (

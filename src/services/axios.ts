@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import CONST from "../constants/app.const";
 import { getAccessToken, removeAccessToken } from "@utils/token.util";
-import { useNavigate } from "react-router";
 import { addToast } from "@heroui/react";
 
 const timeout = CONST.REQUEST.TIME_OUT;

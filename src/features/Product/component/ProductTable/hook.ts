@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 
 export type ReceivedProps = {
   products: any[];
+  pagination?: any;
+  onChangePagination?: (page: any) => void;
 };
 
 const useProductTable = (props: ReceivedProps) => {

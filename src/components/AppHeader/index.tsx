@@ -1,13 +1,8 @@
 import { FC } from "react";
 import useAppHeader, { Props, ReceivedProps } from "./hook";
-import { Navbar, NavbarBrand, NavbarContent, Image } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
 
-const AppHeaderLayout: FC<Props> = ({
-  navigate,
-  currentPath,
-  rightMenu,
-  pageTitle,
-}) => {
+const AppHeaderLayout: FC<Props> = ({ rightMenu, pageTitle }) => {
   return (
     <div className="w-full border-b-1 sticky top-0 z-10">
       <Navbar
