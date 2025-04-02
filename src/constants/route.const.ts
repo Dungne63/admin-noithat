@@ -22,5 +22,7 @@ export const ROUTE_PATHS = {
   ADD_BLOG: "blog/add",
   EDIT_BLOG_BASE: "blog/edit",
   EDIT_BLOG: "blog/edit/:id",
+  EDIT_ORDER_BASE: "order/edit",
+  EDIT_ORDER: "order/edit/:id",
   LOGOUT: "logout",
 };

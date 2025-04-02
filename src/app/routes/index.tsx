@@ -11,7 +11,6 @@ const DashboardPage = lazy(() => import("@features/Dashboard/pages/Dashboard"));
 const LoginPage = lazy(() => import("@features/Auth/pages/Login"));
 const NotFoundPage = lazy(() => import("@features/NotFound"));
 const PermissionDeniedPage = lazy(() => import("@features/PermissionDenied"));
-const OrderPage = lazy(() => import("@features/Order/pages/Order"));
 const UserPage = lazy(() => import("@features/User/pages/User"));
 
 const CategoryPage = lazy(() => import("@features/Category/pages/Category"));
@@ -37,6 +36,9 @@ const EditVoucherPage = lazy(
 const BlogPage = lazy(() => import("@features/Blog/pages/Blog"));
 const AddBlogPage = lazy(() => import("@features/Blog/pages/AddBlog"));
 const EditBlogPage = lazy(() => import("@features/Blog/pages/EditBlog"));
+
+const OrderPage = lazy(() => import("@features/Order/pages/Order"));
+const EditOrderPage = lazy(() => import("@features/Order/pages/EditOrder"));
 
 const BannerPage = lazy(() => import("@features/Banner/pages/Banner"));
 const LogoutPage = lazy(() => import("@features/Logout"));
@@ -96,6 +98,11 @@ function AppRouter() {
               path: ROUTE_PATHS.ORDER,
               element: <OrderPage />,
               title: "Đơn hàng",
+            },
+            {
+              path: ROUTE_PATHS.EDIT_ORDER,
+              element: <EditOrderPage />,
+              title: "Chi tiết đơn hàng",
             },
             {
               path: ROUTE_PATHS.CATEGORY,

@@ -19,6 +19,8 @@ export const OrderSlice = createSlice({
     setOrders: (state, { payload }) => {
       state.orders = payload;
     },
+    updateStatusOrder: (state, { payload }) => {},
+    getDetailOrder: (state, { payload }) => {},
   },
 });
 const OrderReducer = OrderSlice.reducer;

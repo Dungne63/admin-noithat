@@ -3,6 +3,7 @@ const RolePaths: { [key: string]: string[] } = {
     "/",
     "/product",
     "/order",
+    "/order/edit/:id",
     "/user",
     "/banner",
     "/category",

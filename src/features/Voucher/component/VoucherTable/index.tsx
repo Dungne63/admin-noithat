@@ -21,7 +21,6 @@ const VoucherTableLayout: FC<Props> = ({
   deleteVoucher,
   navigateEditVoucher,
 }) => {
-  console.log("vouchers", vouchers);
   const renderCell = useCallback((item: any, columnKey: React.Key) => {
     const cellValue = item[columnKey as keyof any];
 
