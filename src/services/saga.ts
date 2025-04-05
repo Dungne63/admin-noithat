@@ -1,6 +1,7 @@
 import { AppSaga } from "@app/saga";
 import { BlogSaga } from "@features/Blog/services/saga";
 import { CategorySaga } from "@features/Category/services/saga";
+import { StatisticSaga } from "@features/Dashboard/services/saga";
 import { OrderSaga } from "@features/Order/services/saga";
 import { ProductSaga } from "@features/Product/services/saga";
 import { UserSaga } from "@features/User/services/saga";
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     call(ProductSaga),
     call(VoucherSaga),
     call(BlogSaga),
+    call(StatisticSaga),
   ]);
 }

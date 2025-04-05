@@ -12,7 +12,6 @@ import {
 } from "@heroui/react";
 import { formatVND } from "@utils/fomart.util";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
-import AppImage from "@components/AppImage";
 import moment from "moment";
 
 const VoucherTableLayout: FC<Props> = ({
