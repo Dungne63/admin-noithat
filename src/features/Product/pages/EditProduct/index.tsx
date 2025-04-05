@@ -142,7 +142,7 @@ const EditProductLayout: FC<Props> = ({
                   minRows={10}
                 />
                 <div className="text-danger text-xs mt-1">
-                  {errors.description?.message}
+                  {/* {errors.description?.message} */}
                 </div>
               </div>
             </div>
