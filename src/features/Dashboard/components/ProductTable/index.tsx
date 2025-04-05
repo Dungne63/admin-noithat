@@ -68,7 +68,7 @@ const ProductTableLayout: FC<Props> = ({ products, columns }) => {
           )}
         </TableHeader>
         <TableBody
-          items={products.map((item: any, index: number) => ({
+          items={products?.map((item: any, index: number) => ({
             ...item,
             indexNumber: index + 1,
           }))}
