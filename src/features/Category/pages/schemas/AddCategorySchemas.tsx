@@ -4,8 +4,8 @@ export const addCategorySchema = yup
   .object({
     name: yup
       .string()
-      .min(5, "Tên danh mục phải có ít nhất 5 ký tự")
-      .max(20, "Tên danh mục có nhiều nhất 30 ký tự")
+      .min(1, "Tên danh mục phải có ít nhất 5 ký tự")
+      .max(500, "Tên danh mục có nhiều nhất 30 ký tự")
       .required("Không được bỏ trống Tên danh mục"),
     parentId: yup.string().nullable(),
     description: yup.string().required("Không được bỏ trống Mô tả"),

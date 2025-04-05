@@ -34,7 +34,7 @@ const EditProductLayout: FC<Props> = ({
                 <div className="mb-2">Tên sản phẩm</div>
                 <AppInput control={control} name="name" />
                 <div className="text-danger text-xs mt-1">
-                  {errors.name?.message}
+                  {/* {errors.name?.message} */}
                 </div>
               </div>
               <div className="col-span-6">

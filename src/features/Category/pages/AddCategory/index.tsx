@@ -31,14 +31,14 @@ const AddCategoryLayout: FC<Props> = ({
               <div className="mb-2">Tên danh mục</div>
               <AppInput control={control} name="name" type="text" />
               <div className="text-danger text-xs mt-1">
-                {errors.name?.message}
+                {/* {errors.name?.message} */}
               </div>
             </div>
             <div className="col-span-6 row-span-3">
               <div className="mb-2">Mô tả</div>
               <AppTextarea control={control} name="description" minRows={10} />
               <div className="text-danger text-xs mt-1">
-                {errors.description?.message}
+                {/* {errors.description?.message} */}
               </div>
             </div>
             <div className="col-span-6">
