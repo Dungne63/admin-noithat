@@ -4,10 +4,10 @@ export const addProductSchema = yup
   .object({
     name: yup
       .string()
-      .min(5, "Tên sản phẩm phải có ít nhất 5 ký tự")
-      .max(20, "Tên sản phẩm có nhiều nhất 30 ký tự")
+      .min(1, "Tên sản phẩm phải có ít nhất 5 ký tự")
+      .max(500, "Tên sản phẩm có nhiều nhất 30 ký tự")
       .required("Không được bỏ trống Tên sản phẩm"),
-    description: yup.string().required("Không được bỏ trống Mô tả"),
+    description: yup.string().nullable(),
     categories: yup
       .array()
       .of(yup.string().required())

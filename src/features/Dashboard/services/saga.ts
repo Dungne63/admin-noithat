@@ -125,7 +125,7 @@ export function* getBestSeller({ payload: { onSuccess } }: any) {
     yield delay(50);
 
     const rs: { [x: string]: any } = yield SysFetch.get(
-      `/product/best-sellers?${qs.stringify({ limit: 20 })}`
+      `/product/best-sellers?${qs.stringify({ limit: 10 })}`
     );
     yield put(AppActions.setIsLoading(false));
     if (rs.statusCode === 200) {

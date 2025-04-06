@@ -37,9 +37,9 @@ const AddCategoryLayout: FC<Props> = ({
             <div className="col-span-6 row-span-3">
               <div className="mb-2">Mô tả</div>
               <AppTextarea control={control} name="description" minRows={10} />
-              <div className="text-danger text-xs mt-1">
-                {/* {errors.description?.message} */}
-              </div>
+              {/* <div className="text-danger text-xs mt-1">
+                {errors.description?.message}
+              </div> */}
             </div>
             <div className="col-span-6">
               <div className="mb-2">Danh mục cha</div>

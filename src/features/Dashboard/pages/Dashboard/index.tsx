@@ -31,10 +31,10 @@ const DashboardLayout: FC<Props> = ({
         }
       />
       <div className="grid grid-cols-4 gap-4 p-4">
-        <Container col={2} label="Thống kê người dùng">
+        <Container col={6} label="Thống kê người dùng">
           <UserStatistic data={UserStatisticData} />
         </Container>
-        <Container col={2} label="Thống kê nhập hàng">
+        <Container col={6} label="Thống kê nhập hàng">
           <ImportStatistic data={ImportStatisticData} />
         </Container>
         <Container col={2} label="Thống kê đơn hàng">
@@ -43,10 +43,10 @@ const DashboardLayout: FC<Props> = ({
         <Container col={2} label="Thống kê sản phẩm">
           <ProductStatistic data={ProductStatisticData} />
         </Container>
-        <Container col={4} label="Thống kê doanh thu">
+        <Container col={6} label="Thống kê doanh thu">
           <RevenueStatistic data={RevenueStatisticData} />
         </Container>
-        <Container col={4} label="Thống kê sản phẩm bán chạy">
+        <Container col={2} label="Thống kê sản phẩm bán chạy">
           <ProductTable products={BestSellerData} />
         </Container>
       </div>

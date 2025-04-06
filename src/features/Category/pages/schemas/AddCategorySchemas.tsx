@@ -8,7 +8,7 @@ export const addCategorySchema = yup
       .max(500, "Tên danh mục có nhiều nhất 30 ký tự")
       .required("Không được bỏ trống Tên danh mục"),
     parentId: yup.string().nullable(),
-    description: yup.string().required("Không được bỏ trống Mô tả"),
+    description: yup.string().nullable(),
     isActive: yup.boolean().required("Không được bỏ trống Trạng thái"),
   })
   .required();
